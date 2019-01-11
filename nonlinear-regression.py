@@ -1,12 +1,3 @@
-"""
-Know more, visit my Python tutorial page: https://morvanzhou.github.io/tutorials/
-My Youtube Channel: https://www.youtube.com/user/MorvanZhou
-
-Dependencies:
-tensorflow: 1.1.0
-matplotlib
-numpy
-"""
 import tensorflow as tf
 import matplotlib.pyplot as plt
 import numpy as np
@@ -27,12 +18,12 @@ tf_x = tf.placeholder(tf.float32, x.shape)     # input x
 tf_y = tf.placeholder(tf.float32, y.shape)     # input y
 
 # neural network layers
-l1 = tf.layers.dense(tf_x, 10, tf.nn.relu)          # hidden layer
-output = tf.layers.dense(l1, 1)                     # output layer
+l1 = tf.layers.dense(tf_x, 10, tf.nn.relu)          # 隐藏层 10 个神经元
+output = tf.layers.dense(l1, 1)                     # 输出层 1 个神经元
 
 loss = tf.losses.mean_squared_error(tf_y, output)   # compute cost
 optimizer = tf.train.GradientDescentOptimizer(learning_rate=0.5)
-train_op = optimizer.minimize(loss)
+train_op = optimizer.minimize(loss) # 核心：从误差中学习
 
 sess = tf.Session()                                 # control training and others
 sess.run(tf.global_variables_initializer())         # initialize var in graph
